@@ -11,10 +11,9 @@ import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Cancellable;
 import io.reactivex.internal.schedulers.IoScheduler;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -39,32 +38,36 @@ public class BaseComApi {
         return Flowable.create(new FlowableOnSubscribe<T>() {
             @Override
             public void subscribe(final FlowableEmitter<T> e) throws Exception {
-                call.enqueue(new Callback<T>() {
+                //设置取消监听
+                e.setCancellable(new Cancellable() {
                     @Override
-                    public void onResponse(Call<T> call, Response<T> response) {
-                        Log.e(TAG, "onResponse: ");
-                        if (!e.isCancelled()) {
-                            Log.e(TAG, "onResponse: no cancel");
-                            e.onNext(response.body());
-                            e.onComplete();
+                    public void cancel() throws Exception {
+                        Log.e(TAG, "cancel: ");
+                        if (!call.isCanceled()) {
+                            call.cancel();
                         }
-                        call.cancel();
-                    }
-
-                    @Override
-                    public void onFailure(Call<T> call, Throwable t) {
-                        Log.e(TAG, "onFailure: ");
-                        if (!e.isCancelled()) {
-                            Log.e(TAG, "onResponse: no cancel");
-                            e.onError(t);
-                            e.onComplete();
-                        }
-                        call.cancel();
                     }
                 });
+                //同步执行请求，把线程管理交给Rx
+                try {
+                    Response<T> response = call.execute();
+                    Log.e(TAG, "onResponse: ");
+                    if (!e.isCancelled()) {
+                        e.onNext(response.body());
+                        e.onComplete();
+                    }
+                } catch (Exception exception) {
+                    Log.e(TAG, "exception with: exception = [" + exception.getMessage() + "]");
+                    if (!e.isCancelled()) {
+                        Log.e(TAG, "onResponse: no cancel");
+                        e.onError(exception);
+                        e.onComplete();
+                    }
+                }
             }
         }, BackpressureStrategy.BUFFER);
     }
+
 
     /**
      * 后台线程执行同步，主线程执行异步操作

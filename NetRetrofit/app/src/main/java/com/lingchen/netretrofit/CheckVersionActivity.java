@@ -132,13 +132,13 @@ public class CheckVersionActivity extends BaseActivity {
                     }
                 })
                 .subscribe());
-      /*  //延迟0.1s取消
+        /*//延迟0.1s取消
         resultTv.postDelayed(new Runnable() {
             @Override
             public void run() {
                 clear();
             }
-        }, 100);*/
+        }, 200);*/
     }
 
 }
