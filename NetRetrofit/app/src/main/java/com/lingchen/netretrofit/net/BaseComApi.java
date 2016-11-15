@@ -48,6 +48,7 @@ public class BaseComApi {
                         }
                     }
                 });
+
                 //同步执行请求，把线程管理交给Rx
                 try {
                     Response<T> response = call.execute();

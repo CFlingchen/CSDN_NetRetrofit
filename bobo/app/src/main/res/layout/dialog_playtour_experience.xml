@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="610px"
+        android:layout_height="380px"
+        android:background="@drawable/bg_btn_bobo_whiteblue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45px"
+            android:text="@string/dialog_playtour_experience"
+            android:textColor="@color/black"
+            android:textSize="30px" />
+
+
+        <ImageView
+            android:layout_width="244px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="96px"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/playtour_experience_bg" />
+
+        <TextView
+            android:id="@+id/tv_playtour_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="190px"
+            android:text="77500"
+            android:textColor="#fa5f19"
+            android:textSize="32px" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="95px"
+            android:background="@color/dfdfdf" />
+
+        <Button
+            android:id="@+id/bt_playtour_experience_confirm"
+            android:layout_width="158px"
+            android:layout_height="70px"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="15px"
+            android:background="@drawable/bg_bobo_green_button"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="38px" />
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+</com.zhy.autolayout.AutoFrameLayout>

@@ -9,6 +9,9 @@ import com.lingchen.netretrofit.net.ComApi;
 import com.lingchen.netretrofit.net.ResBaseModel;
 import com.lingchen.netretrofit.net.model.VersionModel;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -21,13 +24,14 @@ import io.reactivex.functions.Consumer;
 
 public class CheckVersionActivity extends BaseActivity {
     private static final String TAG = "CheckVersionActivity";
-    private TextView resultTv;
+    @BindView(R.id.tv_result)
+    TextView resultTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_version);
-        resultTv = (TextView) findViewById(R.id.tv_result);
+        ButterKnife.bind(this);
     }
 
     /*//开始请求
@@ -112,6 +116,7 @@ public class CheckVersionActivity extends BaseActivity {
 
 
     //开始请求
+    @OnClick(R.id.start)
     public void start(View view) {
         //交给父类管理生命周期
         addDisposable(ComApi.getInstance().checkVersion()

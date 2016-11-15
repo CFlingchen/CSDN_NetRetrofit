@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/wv_playtour_gift"
+        android:layout_width="750px"
+        android:layout_height="500px"
+        android:layerType="software" />
+
+</com.zhy.autolayout.AutoFrameLayout>
