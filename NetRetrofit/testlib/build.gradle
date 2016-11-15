@@ -36,11 +36,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile project(':netlibrary')
-    compile 'com.google.dagger:dagger:2.0.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.0.1'
-    /*compile 'com.google.dagger:dagger:2.7'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'*/
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.jakewharton:butterknife:8.4.0'
+    /*compile 'com.google.dagger:dagger:2.0.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0.1'*/
+    //引进dagger2
+    compile 'com.google.dagger:dagger:2.7'
+    //dagger2注解
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+    //为了annotationProcessor 不需要使用apt
     provided 'javax.annotation:javax.annotation-api:1.3'
 }

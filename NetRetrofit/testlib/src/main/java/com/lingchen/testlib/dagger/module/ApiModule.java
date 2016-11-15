@@ -1,4 +1,4 @@
-package com.lingchen.testlib.dagger;
+package com.lingchen.testlib.dagger.module;
 
 import com.lingchen.testlib.net.ComApi;
 import com.lingchen.testlib.net.ComInterface;

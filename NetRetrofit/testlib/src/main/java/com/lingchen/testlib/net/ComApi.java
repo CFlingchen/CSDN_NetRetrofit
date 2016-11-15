@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
  * Author    lingchen
  * Email     838878458@qq.com
  * Time      2016/11/14
- * Function  ...
+ * Function  网络接口
  */
 public class ComApi extends BaseComApi {
     private ComInterface mComInterface;

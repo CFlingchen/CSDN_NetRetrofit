@@ -1,39 +1,31 @@
 package com.lingchen.testlib;
 
-import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.tv_result)
-    TextView resultTv;
-
+    private TextView mTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected int getLayoutResID() {
+        return R.layout.activity_main;
     }
 
+    @Override
+    protected void initView() {
+        mTextView = (TextView) findViewById(R.id.tv_poetry);
+    }
 
-    //开始请求
-    @OnClick(R.id.start)
-    public void start(View view) {
-       /* //交给父类管理生命周期
+    @Override
+    protected void initData() {
         addDisposable(mComApi.checkVersion()
                 .doOnNext(versionModelResBaseModel -> {
                     if (versionModelResBaseModel.isSuccess()) {
-                        resultTv.setText(versionModelResBaseModel.getData().getUpdateContent());
+                        mTextView.setText(versionModelResBaseModel.getData().getUpdateContent());
                     } else {
-                        resultTv.setText("请求失败");
+                        mTextView.setText("请求失败");
                     }
                 })
-                .doOnError(throwable -> resultTv.setText(throwable.getMessage()))
-                .subscribe());*/
+                .doOnError(throwable -> mTextView.setText(throwable.getMessage()))
+                .subscribe());
     }
 }
